@@ -39,6 +39,8 @@ namespace arguments {
      * @class NotAllowedArgumentException
      */
     class NotAllowedArgumentException : public std::exception {
+        using std::exception::what;
+
     private:
         /** @var flag Flag of the argument */
         char *flag = nullptr;
@@ -54,7 +56,7 @@ namespace arguments {
         /**
          * Cause of the exception
          */
-        char *what();
+        const char *what();
     };
 
     /**

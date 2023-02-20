@@ -30,4 +30,6 @@ target_link_libraries(
 include(GoogleTest)
 gtest_discover_tests(AllTests)
 
-add_executable(ipkcpc src/client.cpp src/client.h src/args.cpp src/args.h)
+add_executable(server server/server.c)
+
+add_executable(ipkcpc src/main.cpp src/args.cpp src/args.h src/base_client.cpp src/base_client.h src/tcp_client.cpp src/tcp_client.h src/observer.cpp src/observer.h)

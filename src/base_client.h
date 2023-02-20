@@ -8,9 +8,12 @@
 #ifndef IPKCPC_BASE_CLIENT_H
 #define IPKCPC_BASE_CLIENT_H
 
+#include <utility>
+#include <unistd.h>
 #include <exception>
 #include <string>
 #include <netinet/in.h>
+#include "observer.h"
 
 namespace client {
     class SocketCreationException : public std::exception {
@@ -28,7 +31,7 @@ namespace client {
         [[nodiscard]] const char *what() const noexcept override;
     };
 
-    class BaseClient {
+    class BaseClient : public events::Subject {
     protected:
         /** @var host Host of the server */
         std::string *host;

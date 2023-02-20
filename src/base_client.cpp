@@ -7,9 +7,6 @@
 
 #include "base_client.h"
 
-#include <utility>
-#include <unistd.h>
-
 namespace client {
     const char *SocketCreationException::what() const noexcept { return "Socket creation failed"; }
 

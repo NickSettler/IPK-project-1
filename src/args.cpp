@@ -12,8 +12,7 @@ arguments::NotAllowedArgumentException::NotAllowedArgumentException(char flag) {
     this->flag[0] = flag;
     this->flag[1] = '\0';
 }
-
-const char *arguments::NotAllowedArgumentException::what() {
+const char *arguments::NotAllowedArgumentException::what() const noexcept {
     if (this->flag == nullptr) { return (char *) "Flag is not allowed."; }
 
     auto *message = new std::string("Flag ");

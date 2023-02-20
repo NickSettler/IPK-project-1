@@ -39,7 +39,6 @@ namespace arguments {
      * @class NotAllowedArgumentException
      */
     class NotAllowedArgumentException : public std::exception {
-        using std::exception::what;
 
     private:
         /** @var flag Flag of the argument */
@@ -56,7 +55,7 @@ namespace arguments {
         /**
          * Cause of the exception
          */
-        const char *what();
+        [[nodiscard]] const char *what() const noexcept override;
     };
 
     /**

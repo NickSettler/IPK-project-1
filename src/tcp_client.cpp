@@ -56,8 +56,13 @@ namespace client {
         while (true) {
             std::string input;
             std::getline(std::cin, input);
+            std::string send_input;
 
-            ssize_t send_bytes = send(this->sock, input.c_str(), input.length(), 0);
+            send_input += (char) 0;
+            send_input += (char) input.length();
+            send_input += input;
+
+            ssize_t send_bytes = send(this->sock, send_input.c_str(), send_input.length(), 0);
             if (send_bytes < 0) { perror("Send failed\n"); }
         }
     }

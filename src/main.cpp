@@ -89,9 +89,8 @@ void create_tcp_client(const std::string &host, int port) {
     try {
         tcp_client->run();
     } catch (client::SocketTerminatedException &e) {
-        printf("%s\n", e.what());
         delete_instances();
-        std::exit(1);
+        std::exit(0);
     }
 }
 

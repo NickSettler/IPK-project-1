@@ -23,8 +23,6 @@ void delete_instances() {
 }
 
 void interrupt_signal_handler(int signal) {
-    printf("Interrupt signal received. Exiting...\n");
-
     delete_instances();
 
     exit(signal);
@@ -99,7 +97,6 @@ void create_tcp_client(const std::string &host, int port) {
 
 int main(int argc, char **argv) {
     signal(SIGINT, interrupt_signal_handler);
-    signal(SIGKILL, interrupt_signal_handler);
 
     args_parser = new arguments::ArgumentsParser(argc, argv, {'h', 'p', 'm'});
 

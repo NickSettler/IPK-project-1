@@ -17,13 +17,15 @@ namespace client {
     }
 
     void TCPClient::init() {
-        this->sock = socket(AF_INET, SOCK_STREAM, 0);
-
-        if (this->sock < 0) { throw SocketCreationException(); }
+        bzero((char *) &server_address, sizeof(server_address));
 
         this->server_address.sin_family = AF_INET;
         this->server_address.sin_addr.s_addr = inet_addr(this->host->c_str());
         this->server_address.sin_port = htons(this->port);
+
+        this->sock = socket(AF_INET, SOCK_DGRAM, 0);
+
+        if (this->sock < 0) { throw SocketCreationException(); }
 
         this->client_fd = connect(this->sock, (struct sockaddr *) &this->server_address, sizeof(this->server_address));
 

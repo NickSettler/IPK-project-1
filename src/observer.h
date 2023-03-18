@@ -26,7 +26,7 @@ namespace events {
     class Observer {
     protected:
         /** @var callback Callback function */
-        std::function<void(const std::string &)> &callback;
+        std::function<void(const char *)> &callback;
 
     public:
         /**
@@ -34,13 +34,13 @@ namespace events {
          *
          * @param callback Callback function
          */
-        explicit Observer(std::function<void(const std::string &)> &callback);
+        explicit Observer(std::function<void(const char *)> &callback);
 
         /**
          * Update method. It is called when subject notifies about changes.
          * @param subject Subject of the observer
          */
-        void update(const std::string &subject);
+        void update(const char *subject);
     };
 
     /**
@@ -84,7 +84,7 @@ namespace events {
          *
          * @param message Message to be sent to observers
          */
-        void notify(const std::string &message);
+        void notify(const char *message);
     };
 }// namespace events
 

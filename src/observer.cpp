@@ -8,9 +8,9 @@
 #include "observer.h"
 
 namespace events {
-    Observer::Observer(std::function<void(const std::string &)> &callback) : callback(callback) {}
+    Observer::Observer(std::function<void(const char *)> &callback) : callback(callback) {}
 
-    void Observer::update(const std::string &subject) { callback(subject); }
+    void Observer::update(const char *subject) { callback(subject); }
 
     Subject::Subject() { this->observers = new std::vector<Observer *>(); }
 
@@ -26,7 +26,7 @@ namespace events {
                                this->observers->end());
     }
 
-    void Subject::notify(const std::string &message) {
+    void Subject::notify(const char *message) {
         for (auto observer: *this->observers) { observer->update(message); }
     }
 }// namespace events

@@ -20,7 +20,7 @@ classDiagram
     TCPClient <.. TCP_CLIENT_STATE
     
     class Observer{
-        -callback : void(*)(const char *)
+        -callback : void*
         
         +update(const char *subject) void
     }

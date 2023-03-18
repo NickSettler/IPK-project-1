@@ -1,5 +1,5 @@
 /**
- * TCP client class
+ * TCP Client Class
  *
  * @file: TcpClient.h
  * @date: 18.02.2023
@@ -20,6 +20,20 @@
  * @namespace client
  */
 namespace client {
+    class SocketTerminatedException : public std::exception {
+    public:
+        [[nodiscard]] const char *what() const noexcept override;
+    };
+
+    /**
+     * TCP client states
+     */
+    enum TCP_CLIENT_STATE {
+        INIT,
+        ESTABLISHED,
+        CLOSED,
+    };
+
     /**
      * TCP client class
      */

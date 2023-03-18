@@ -1,5 +1,5 @@
 /**
- * TCP client class
+ * TCP Client Class
  *
  * @file: TcpClient.cpp
  * @date: 18.02.2023
@@ -8,6 +8,8 @@
 #include "tcp_client.h"
 
 namespace client {
+    const char *SocketTerminatedException::what() const noexcept { return "Socket terminated"; }
+
     TCPClient::TCPClient(std::string host, int port) : client::BaseClient(std::move(host), port) {}
 
     TCPClient::~TCPClient() {

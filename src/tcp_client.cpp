@@ -12,7 +12,11 @@ namespace client {
 
     TCPClient::TCPClient(std::string host, int port) : client::BaseClient(std::move(host), port) {}
 
-    TCPClient::~TCPClient() { close(this->client_fd); }
+    TCPClient::~TCPClient() {
+        if (this->state != TCP_CLIENT_STATE::CLOSED) { send(this->client_fd, "BYE", 3, 0); }
+
+        close(this->client_fd);
+    }
 
     void TCPClient::init() {
         bzero((char *) &server_address, sizeof(server_address));

@@ -9,19 +9,10 @@
 #define IPKCPC_TCP_CLIENT_H
 
 #include "base_client.h"
-#include "observer.h"
 
-#include <csignal>
-#include <unistd.h>
-#include <utility>
-#include <arpa/inet.h>
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <arpa/inet.h>
-#include <netinet/in.h>
-#include <netdb.h>
 #include <iostream>
+#include <csignal>
+#include <arpa/inet.h>
 
 /**
  * Client namespace

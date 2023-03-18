@@ -37,8 +37,13 @@ int main(int argc, char **argv) {
     std::string host = args_parser->get_value('h');
     int port = std::stoi(args_parser->get_value('p'));
 
-    std::function<void(const std::string &)> tcp_observer_callback = [](const std::string &message) {
-        printf("Message received: %s\n", message.c_str());
+    std::function<void(const char *)> tcp_observer_callback = [](const char *message) {
+        char opcode = message[0];
+        char status_code = message[1];
+        char length = message[2];
+        std::string data = message + 3;
+
+        printf("OPCODE: %d, STATUS: %d, LENGTH: %d, DATA: %s\n", opcode, status_code, length, data.c_str());
     };
 
     auto tcp_observer = new events::Observer(tcp_observer_callback);

@@ -25,7 +25,7 @@ namespace client {
         this->server_address.sin_addr.s_addr = inet_addr(this->host->c_str());
         this->server_address.sin_port = htons(this->port);
 
-        this->sock = socket(AF_INET, SOCK_DGRAM, 0);
+        this->sock = socket(AF_INET, SOCK_STREAM, 0);
 
         if (this->sock < 0) { throw SocketCreationException(); }
 

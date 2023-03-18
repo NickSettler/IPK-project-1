@@ -12,11 +12,7 @@ namespace client {
 
     TCPClient::TCPClient(std::string host, int port) : client::BaseClient(std::move(host), port) {}
 
-    TCPClient::~TCPClient() {
-        close(this->client_fd);
-
-        kill(this->receive_pid, SIGKILL);
-    }
+    TCPClient::~TCPClient() { close(this->client_fd); }
 
     void TCPClient::init() {
         bzero((char *) &server_address, sizeof(server_address));
@@ -38,9 +34,9 @@ namespace client {
         receive_pid = fork();
 
         if (receive_pid == 0) {
-            this->process_receive();
-        } else {
             this->process_send();
+        } else {
+            this->process_receive();
         }
     }
 

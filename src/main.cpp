@@ -111,6 +111,15 @@ int main(int argc, char **argv) {
         return 1;
     }
 
+    bool has_host = args_parser->has_flag('h');
+    bool has_port = args_parser->has_flag('p');
+    bool has_mode = args_parser->has_flag('m');
+
+    if (!has_host || !has_port || !has_mode) {
+        arguments::ArgumentsParser::print_help();
+        return 1;
+    }
+
     std::string host = args_parser->get_value('h');
     int port = std::stoi(args_parser->get_value('p'));
 

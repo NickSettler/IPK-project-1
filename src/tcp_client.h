@@ -8,6 +8,7 @@
 #ifndef IPKCPC_TCP_CLIENT_H
 #define IPKCPC_TCP_CLIENT_H
 
+#include "utils.h"
 #include "base_client.h"
 
 #include <iostream>
@@ -44,6 +45,8 @@ namespace client {
 
         /** @var receive_pid PID of the receive process */
         int receive_pid = 0;
+
+        TCP_CLIENT_STATE state = TCP_CLIENT_STATE::INIT;
 
         /**
          * Internal receive process
@@ -82,7 +85,6 @@ namespace client {
          */
         void run() override;
     };
-
 }// namespace client
 
 #endif// IPKCPC_TCP_CLIENT_H

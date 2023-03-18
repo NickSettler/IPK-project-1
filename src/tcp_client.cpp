@@ -52,6 +52,23 @@ namespace client {
             ssize_t n = recv(this->sock, buffer, 1024, 0);
             if (n < 0) { perror("Receive failed\n"); }
 
+            std::string buffer_string(buffer);
+            trim(buffer_string);
+
+            switch (state) {
+                case TCP_CLIENT_STATE::INIT:
+                    if (buffer_string == "HELLO") state = TCP_CLIENT_STATE::ESTABLISHED;
+                    else
+                        state = TCP_CLIENT_STATE::CLOSED;
+                    break;
+                case TCP_CLIENT_STATE::ESTABLISHED:
+                    if (buffer_string == "BYE") state = TCP_CLIENT_STATE::CLOSED;
+                    break;
+                case TCP_CLIENT_STATE::CLOSED:
+                    kill(this->receive_pid, SIGKILL);
+                    throw SocketTerminatedException();
+            }
+
             this->notify(buffer);
         }
     }

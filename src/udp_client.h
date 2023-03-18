@@ -19,7 +19,7 @@ namespace client {
     /**
      * TCP client class
      */
-    class UDPClient : public client::BaseClient {
+    class UDPClient final : public client::BaseClient {
     private:
         /** @var client_fd Connection file descriptor of the client */
         int client_fd = 0;

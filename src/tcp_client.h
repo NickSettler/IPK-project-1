@@ -38,7 +38,7 @@ namespace client {
     /**
      * TCP client class
      */
-    class TCPClient : public client::BaseClient {
+    class TCPClient final : public client::BaseClient {
     private:
         /** @var client_fd Connection file descriptor of the client */
         int client_fd = 0;

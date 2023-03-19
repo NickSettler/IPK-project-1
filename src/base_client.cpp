@@ -21,6 +21,12 @@ namespace client {
     BaseClient::~BaseClient() {
         delete this->host;
 
-        if (this->sock != 0) { close(this->sock); }
+        if (this->sock != 0) {
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
+            closesocket(this->sock);
+#else
+            close(this->sock);
+#endif
+        }
     }
 }// namespace client

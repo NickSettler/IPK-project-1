@@ -45,9 +45,17 @@ namespace client {
         /** @var port Port of the server */
         int port;
 
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
+        SOCKET sock = 0;
+#else
         int sock = 0;
+#endif
 
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
+        SOCKADDR_IN server_address{};
+#else
         sockaddr_in server_address{};
+#endif
 
     public:
         BaseClient(std::string host, int port);

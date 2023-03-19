@@ -9,11 +9,15 @@
 #define IPKCPC_TCP_CLIENT_H
 
 #include "utils.h"
+#include "common.h"
 #include "base_client.h"
 
 #include <iostream>
 #include <csignal>
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
+#else
 #include <arpa/inet.h>
+#endif
 
 /**
  * Client namespace

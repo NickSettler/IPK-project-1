@@ -9,6 +9,7 @@
 #define IPKCPC_OBSERVER_H
 
 #include <vector>
+#include <functional>
 
 /**
  * Events namespace
